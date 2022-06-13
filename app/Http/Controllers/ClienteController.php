@@ -15,7 +15,10 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        //return $clientes;
+
+        return view('clientes.index',['clientes'=>$clientes]);
     }
 
     /**
@@ -25,7 +28,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        $cliente = new Cliente();
+
+        return view ('clientes.create',['cliente'=>$cliente]);
     }
 
     /**
@@ -36,7 +41,10 @@ class ClienteController extends Controller
      */
     public function store(StoreClienteRequest $request)
     {
-        //
+        $cliente = new Cliente($request->validated());
+
+        $cliente->save();
+        return redirect(route('clientes.index'))->with('success',"El $cliente->nombre se ha creado correctamente");
     }
 
     /**
@@ -47,7 +55,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.show',['cliente'=>$cliente]);
     }
 
     /**

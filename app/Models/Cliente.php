@@ -9,6 +9,11 @@ class Cliente extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'dni',
+        'nombre',
+    ];
+
     /**
      * The cuentas that belong to the Cliente
      *
@@ -19,7 +24,7 @@ class Cliente extends Model
         return $this->belongsToMany(Cuenta::class,'titulares');
     }
 
-    
+
 }
 
 /*
